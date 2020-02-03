@@ -1,0 +1,94 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+# Date created = 20:47:43  January 10, 2020
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		4bitCounter_ParLoad_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE6E22C8
+set_global_assignment -name TOP_LEVEL_ENTITY nbitCounter_ParLoad
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:47:43  JANUARY 10, 2020"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_64 -to D_inputs[0]
+set_location_assignment PIN_65 -to D_inputs[1]
+set_location_assignment PIN_66 -to D_inputs[2]
+set_location_assignment PIN_67 -to D_inputs[3]
+set_location_assignment PIN_50 -to count_enable
+set_location_assignment PIN_86 -to leds[0]
+set_location_assignment PIN_87 -to leds[1]
+set_location_assignment PIN_98 -to leds[2]
+set_location_assignment PIN_99 -to leds[3]
+set_location_assignment PIN_100 -to leds[4]
+set_location_assignment PIN_104 -to leds[5]
+set_location_assignment PIN_103 -to leds[6]
+set_location_assignment PIN_52 -to load
+set_location_assignment PIN_23 -to CLK
+set_location_assignment PIN_32 -to reset
+set_global_assignment -name VHDL_FILE nbit_syncCount_parLoad.vhd
+set_global_assignment -name VHDL_FILE TwoInputXOR_VHDL.vhd
+set_global_assignment -name VHDL_FILE TwoInputMultiplexor_VHDL.vhd
+set_global_assignment -name VHDL_FILE TwoInputAND_VHDL.vhd
+set_global_assignment -name VHDL_FILE nbitTwoInputMux_VHDL.vhd
+set_global_assignment -name VHDL_FILE nbitReg.vhd
+set_global_assignment -name VHDL_FILE nbit_incrementor.vhd
+set_global_assignment -name VHDL_FILE HalfAdder_VHDL.vhd
+set_global_assignment -name VHDL_FILE dFlipFlop.vhd
+set_global_assignment -name VHDL_FILE bcd7seg.vhd
+set_global_assignment -name VHDL_FILE clock_div.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,0 +1,369 @@
+|nbitCounter_ParLoad
+D_inputs[0] => nbitTwoInputMux_VHDL:mux.InB[0]
+D_inputs[1] => nbitTwoInputMux_VHDL:mux.InB[1]
+D_inputs[2] => nbitTwoInputMux_VHDL:mux.InB[2]
+D_inputs[3] => nbitTwoInputMux_VHDL:mux.InB[3]
+load => nbitTwoInputMux_VHDL:mux.Control
+count_enable => nbit_incrementor:inc.C_in
+CLK => clock_div:div.clk_in
+reset => nbitReg:reg.reset
+Q_outputs[0] <> nbitReg:reg.Q_outputs[0]
+Q_outputs[1] <> nbitReg:reg.Q_outputs[1]
+Q_outputs[2] <> nbitReg:reg.Q_outputs[2]
+Q_outputs[3] <> nbitReg:reg.Q_outputs[3]
+ripple_carry_out << comb.DB_MAX_OUTPUT_PORT_TYPE
+leds[0] << bcd7seg:seg.leds[0]
+leds[1] << bcd7seg:seg.leds[1]
+leds[2] << bcd7seg:seg.leds[2]
+leds[3] << bcd7seg:seg.leds[3]
+leds[4] << bcd7seg:seg.leds[4]
+leds[5] << bcd7seg:seg.leds[5]
+leds[6] << bcd7seg:seg.leds[6]
+
+
+|nbitCounter_ParLoad|clock_div:div
+clk_in => tmp.CLK
+clk_in => count[0].CLK
+clk_in => count[1].CLK
+clk_in => count[2].CLK
+clk_in => count[3].CLK
+clk_in => count[4].CLK
+clk_in => count[5].CLK
+clk_in => count[6].CLK
+clk_in => count[7].CLK
+clk_in => count[8].CLK
+clk_in => count[9].CLK
+clk_in => count[10].CLK
+clk_in => count[11].CLK
+clk_in => count[12].CLK
+clk_in => count[13].CLK
+clk_in => count[14].CLK
+clk_in => count[15].CLK
+clk_in => count[16].CLK
+clk_in => count[17].CLK
+clk_in => count[18].CLK
+clk_in => count[19].CLK
+clk_in => count[20].CLK
+clk_in => count[21].CLK
+clk_in => count[22].CLK
+clk_in => count[23].CLK
+clk_in => count[24].CLK
+clk_in => count[25].CLK
+clk_in => count[26].CLK
+clk_in => count[27].CLK
+clk_in => count[28].CLK
+clk_in => count[29].CLK
+clk_in => count[30].CLK
+clk_in => count[31].CLK
+reset => tmp.ACLR
+reset => count[0].PRESET
+reset => count[1].ACLR
+reset => count[2].ACLR
+reset => count[3].ACLR
+reset => count[4].ACLR
+reset => count[5].ACLR
+reset => count[6].ACLR
+reset => count[7].ACLR
+reset => count[8].ACLR
+reset => count[9].ACLR
+reset => count[10].ACLR
+reset => count[11].ACLR
+reset => count[12].ACLR
+reset => count[13].ACLR
+reset => count[14].ACLR
+reset => count[15].ACLR
+reset => count[16].ACLR
+reset => count[17].ACLR
+reset => count[18].ACLR
+reset => count[19].ACLR
+reset => count[20].ACLR
+reset => count[21].ACLR
+reset => count[22].ACLR
+reset => count[23].ACLR
+reset => count[24].ACLR
+reset => count[25].ACLR
+reset => count[26].ACLR
+reset => count[27].ACLR
+reset => count[28].ACLR
+reset => count[29].ACLR
+reset => count[30].ACLR
+reset => count[31].ACLR
+clk_out <= tmp.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc
+InA[0] => HalfAdder_VHDL:initFirstHalfAdd.a
+InA[1] => HalfAdder_VHDL:genHlfAdds:1:initStdHlfAdd.a
+InA[2] => HalfAdder_VHDL:genHlfAdds:2:initStdHlfAdd.a
+InA[3] => HalfAdder_VHDL:genHlfAdds:3:initStdHlfAdd.a
+C_in => HalfAdder_VHDL:initFirstHalfAdd.b
+Sum[0] <= HalfAdder_VHDL:initFirstHalfAdd.s
+Sum[1] <= HalfAdder_VHDL:genHlfAdds:1:initStdHlfAdd.s
+Sum[2] <= HalfAdder_VHDL:genHlfAdds:2:initStdHlfAdd.s
+Sum[3] <= HalfAdder_VHDL:genHlfAdds:3:initStdHlfAdd.s
+C_out <= HalfAdder_VHDL:genHlfAdds:3:initStdHlfAdd.Cout
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:initFirstHalfAdd
+a => TwoInputXOR_VHDL:sumIO.a
+a => TwoInputAND_VHDL:CoutIO.a
+b => TwoInputXOR_VHDL:sumIO.b
+b => TwoInputAND_VHDL:CoutIO.b
+s <= TwoInputXOR_VHDL:sumIO.c
+Cout <= TwoInputAND_VHDL:CoutIO.c
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:initFirstHalfAdd|TwoInputXOR_VHDL:sumIO
+a => c.IN0
+a => c.IN0
+b => c.IN1
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:initFirstHalfAdd|TwoInputAND_VHDL:CoutIO
+a => c.IN0
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:3:initStdHlfAdd
+a => TwoInputXOR_VHDL:sumIO.a
+a => TwoInputAND_VHDL:CoutIO.a
+b => TwoInputXOR_VHDL:sumIO.b
+b => TwoInputAND_VHDL:CoutIO.b
+s <= TwoInputXOR_VHDL:sumIO.c
+Cout <= TwoInputAND_VHDL:CoutIO.c
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:3:initStdHlfAdd|TwoInputXOR_VHDL:sumIO
+a => c.IN0
+a => c.IN0
+b => c.IN1
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:3:initStdHlfAdd|TwoInputAND_VHDL:CoutIO
+a => c.IN0
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:2:initStdHlfAdd
+a => TwoInputXOR_VHDL:sumIO.a
+a => TwoInputAND_VHDL:CoutIO.a
+b => TwoInputXOR_VHDL:sumIO.b
+b => TwoInputAND_VHDL:CoutIO.b
+s <= TwoInputXOR_VHDL:sumIO.c
+Cout <= TwoInputAND_VHDL:CoutIO.c
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:2:initStdHlfAdd|TwoInputXOR_VHDL:sumIO
+a => c.IN0
+a => c.IN0
+b => c.IN1
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:2:initStdHlfAdd|TwoInputAND_VHDL:CoutIO
+a => c.IN0
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:1:initStdHlfAdd
+a => TwoInputXOR_VHDL:sumIO.a
+a => TwoInputAND_VHDL:CoutIO.a
+b => TwoInputXOR_VHDL:sumIO.b
+b => TwoInputAND_VHDL:CoutIO.b
+s <= TwoInputXOR_VHDL:sumIO.c
+Cout <= TwoInputAND_VHDL:CoutIO.c
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:1:initStdHlfAdd|TwoInputXOR_VHDL:sumIO
+a => c.IN0
+a => c.IN0
+b => c.IN1
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbit_incrementor:inc|HalfAdder_VHDL:\genHlfAdds:1:initStdHlfAdd|TwoInputAND_VHDL:CoutIO
+a => c.IN0
+b => c.IN1
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbitTwoInputMux_VHDL:mux
+InA[0] => TwoInputMultiplexor_VHDL:init:0:initTwoInMux.a
+InA[1] => TwoInputMultiplexor_VHDL:init:1:initTwoInMux.a
+InA[2] => TwoInputMultiplexor_VHDL:init:2:initTwoInMux.a
+InA[3] => TwoInputMultiplexor_VHDL:init:3:initTwoInMux.a
+InB[0] => TwoInputMultiplexor_VHDL:init:0:initTwoInMux.b
+InB[1] => TwoInputMultiplexor_VHDL:init:1:initTwoInMux.b
+InB[2] => TwoInputMultiplexor_VHDL:init:2:initTwoInMux.b
+InB[3] => TwoInputMultiplexor_VHDL:init:3:initTwoInMux.b
+Control => TwoInputMultiplexor_VHDL:init:3:initTwoInMux.Con
+Control => TwoInputMultiplexor_VHDL:init:2:initTwoInMux.Con
+Control => TwoInputMultiplexor_VHDL:init:1:initTwoInMux.Con
+Control => TwoInputMultiplexor_VHDL:init:0:initTwoInMux.Con
+Output[0] <= TwoInputMultiplexor_VHDL:init:0:initTwoInMux.d
+Output[1] <= TwoInputMultiplexor_VHDL:init:1:initTwoInMux.d
+Output[2] <= TwoInputMultiplexor_VHDL:init:2:initTwoInMux.d
+Output[3] <= TwoInputMultiplexor_VHDL:init:3:initTwoInMux.d
+
+
+|nbitCounter_ParLoad|nbitTwoInputMux_VHDL:mux|TwoInputMultiplexor_VHDL:\init:3:initTwoInMux
+a => d.DATAB
+b => d.DATAA
+Con => d.OUTPUTSELECT
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbitTwoInputMux_VHDL:mux|TwoInputMultiplexor_VHDL:\init:2:initTwoInMux
+a => d.DATAB
+b => d.DATAA
+Con => d.OUTPUTSELECT
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbitTwoInputMux_VHDL:mux|TwoInputMultiplexor_VHDL:\init:1:initTwoInMux
+a => d.DATAB
+b => d.DATAA
+Con => d.OUTPUTSELECT
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbitTwoInputMux_VHDL:mux|TwoInputMultiplexor_VHDL:\init:0:initTwoInMux
+a => d.DATAB
+b => d.DATAA
+Con => d.OUTPUTSELECT
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|nbitCounter_ParLoad|nbitReg:reg
+CLK => dFlipFlop:init:3:dIinit.CLK
+CLK => dFlipFlop:init:2:dIinit.CLK
+CLK => dFlipFlop:init:1:dIinit.CLK
+CLK => dFlipFlop:init:0:dIinit.CLK
+D_inputs[0] => dFlipFlop:init:0:dIinit.D
+D_inputs[1] => dFlipFlop:init:1:dIinit.D
+D_inputs[2] => dFlipFlop:init:2:dIinit.D
+D_inputs[3] => dFlipFlop:init:3:dIinit.D
+reset => dFlipFlop:init:3:dIinit.reset
+reset => dFlipFlop:init:2:dIinit.reset
+reset => dFlipFlop:init:1:dIinit.reset
+reset => dFlipFlop:init:0:dIinit.reset
+preset => dFlipFlop:init:3:dIinit.preset
+preset => dFlipFlop:init:2:dIinit.preset
+preset => dFlipFlop:init:1:dIinit.preset
+preset => dFlipFlop:init:0:dIinit.preset
+Q_outputs[0] <> dFlipFlop:init:0:dIinit.Q
+Q_outputs[1] <> dFlipFlop:init:1:dIinit.Q
+Q_outputs[2] <> dFlipFlop:init:2:dIinit.Q
+Q_outputs[3] <> dFlipFlop:init:3:dIinit.Q
+Q_bar_outputs[0] <> dFlipFlop:init:0:dIinit.Q_bar
+Q_bar_outputs[1] <> dFlipFlop:init:1:dIinit.Q_bar
+Q_bar_outputs[2] <> dFlipFlop:init:2:dIinit.Q_bar
+Q_bar_outputs[3] <> dFlipFlop:init:3:dIinit.Q_bar
+
+
+|nbitCounter_ParLoad|nbitReg:reg|dFlipFlop:\init:3:dIinit
+D => Q~reg0.DATAIN
+D => Q_bar~reg0.DATAIN
+reset => Q_bar~reg0.PRESET
+reset => Q~reg0.ACLR
+reset => Q.IN0
+preset => Q.IN1
+CLK => Q_bar~reg0.CLK
+CLK => Q~reg0.CLK
+Q <> Q~reg0
+Q_bar <> Q_bar~reg0
+
+
+|nbitCounter_ParLoad|nbitReg:reg|dFlipFlop:\init:2:dIinit
+D => Q~reg0.DATAIN
+D => Q_bar~reg0.DATAIN
+reset => Q_bar~reg0.PRESET
+reset => Q~reg0.ACLR
+reset => Q.IN0
+preset => Q.IN1
+CLK => Q_bar~reg0.CLK
+CLK => Q~reg0.CLK
+Q <> Q~reg0
+Q_bar <> Q_bar~reg0
+
+
+|nbitCounter_ParLoad|nbitReg:reg|dFlipFlop:\init:1:dIinit
+D => Q~reg0.DATAIN
+D => Q_bar~reg0.DATAIN
+reset => Q_bar~reg0.PRESET
+reset => Q~reg0.ACLR
+reset => Q.IN0
+preset => Q.IN1
+CLK => Q_bar~reg0.CLK
+CLK => Q~reg0.CLK
+Q <> Q~reg0
+Q_bar <> Q_bar~reg0
+
+
+|nbitCounter_ParLoad|nbitReg:reg|dFlipFlop:\init:0:dIinit
+D => Q~reg0.DATAIN
+D => Q_bar~reg0.DATAIN
+reset => Q_bar~reg0.PRESET
+reset => Q~reg0.ACLR
+reset => Q.IN0
+preset => Q.IN1
+CLK => Q_bar~reg0.CLK
+CLK => Q~reg0.CLK
+Q <> Q~reg0
+Q_bar <> Q_bar~reg0
+
+
+|nbitCounter_ParLoad|bcd7seg:seg
+CLK => leds[0]~reg0.CLK
+CLK => leds[1]~reg0.CLK
+CLK => leds[2]~reg0.CLK
+CLK => leds[3]~reg0.CLK
+CLK => leds[4]~reg0.CLK
+CLK => leds[5]~reg0.CLK
+CLK => leds[6]~reg0.CLK
+bcd[0] => Mux0.IN19
+bcd[0] => Mux1.IN19
+bcd[0] => Mux2.IN19
+bcd[0] => Mux3.IN19
+bcd[0] => Mux4.IN19
+bcd[0] => Mux5.IN19
+bcd[0] => Mux6.IN19
+bcd[1] => Mux0.IN18
+bcd[1] => Mux1.IN18
+bcd[1] => Mux2.IN18
+bcd[1] => Mux3.IN18
+bcd[1] => Mux4.IN18
+bcd[1] => Mux5.IN18
+bcd[1] => Mux6.IN18
+bcd[2] => Mux0.IN17
+bcd[2] => Mux1.IN17
+bcd[2] => Mux2.IN17
+bcd[2] => Mux3.IN17
+bcd[2] => Mux4.IN17
+bcd[2] => Mux5.IN17
+bcd[2] => Mux6.IN17
+bcd[3] => Mux0.IN16
+bcd[3] => Mux1.IN16
+bcd[3] => Mux2.IN16
+bcd[3] => Mux3.IN16
+bcd[3] => Mux4.IN16
+bcd[3] => Mux5.IN16
+bcd[3] => Mux6.IN16
+leds[0] <= leds[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[1] <= leds[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[2] <= leds[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[3] <= leds[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[4] <= leds[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[5] <= leds[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+leds[6] <= leds[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
